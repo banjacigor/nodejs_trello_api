@@ -20,9 +20,9 @@ module.exports.login_member = async (req, res) => {
     )
 
     const token = await member.generateAuthToken()
-    return res.send({ member, token })
+    return res.status(200).send({ member, token })
   } catch (e) {
-    res.status(400).send()
+    return res.status(400).send()
   }
 }
 

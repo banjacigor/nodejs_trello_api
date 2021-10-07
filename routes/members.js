@@ -12,7 +12,7 @@ router.post("/logout", auth, memberController.logout_member)
 // Get member by ID
 router.get("/:id", auth, memberController.get_member)
 // Update member
-router.put("/:id", auth, memberController.update_member)
+router.patch("/:id", auth, memberController.update_member)
 // Delete member
 router.delete("/:id", auth, memberController.delete_member)
 
