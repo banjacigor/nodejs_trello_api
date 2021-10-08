@@ -8,7 +8,7 @@ router.post("/", auth, cardController.create_card)
 // Get a card
 router.get("/:id", auth, cardController.get_card)
 // Update a card
-router.put("/:id", auth, cardController.update_card)
+router.patch("/:id", auth, cardController.update_card)
 // Add new comment to a card
 router.post("/:id/actions/comments", auth, cardController.add_comment)
 // Add a member to a card

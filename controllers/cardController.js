@@ -7,7 +7,7 @@ module.exports.create_card = async (req, res) => {
 
   try {
     await card.save()
-    res.status(200).send(card)
+    res.status(201).send(card)
   } catch (e) {
     res.status(400).send(e)
   }
@@ -83,7 +83,7 @@ module.exports.update_card = async (req, res) => {
     })
 
     await card.save()
-    res.status(200).send(card)
+    return res.status(200).send(card)
   } catch (e) {
     res.status(500).send()
   }
@@ -105,7 +105,7 @@ module.exports.add_comment = async (req, res) => {
     card.idComments.push(comment._id)
     await comment.save()
     await card.save()
-    return res.status(200).send()
+    return res.status(200).send(card)
   } catch (e) {
     return res.status(500).send()
   }
@@ -143,7 +143,7 @@ module.exports.delete_comment = async (req, res) => {
     card.idComments = card.idComments.filter((el) => el.toString() !== idAction)
     await card.save()
     await Comment.deleteOne({ _id: idAction })
-    return res.status(200).send()
+    return res.status(200).send(card)
   } catch (e) {
     return res.status(500).send()
   }
@@ -157,7 +157,7 @@ module.exports.delete_member = async (req, res) => {
     const card = await Card.findById(_id)
     card.idMembers = card.idMembers.filter((el) => el.toString() !== idMember)
     await card.save()
-    return res.status(200).send()
+    return res.status(200).send(card)
   } catch (e) {
     return res.status(500).send()
   }
