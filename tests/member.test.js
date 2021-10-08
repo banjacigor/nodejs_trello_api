@@ -1,27 +1,9 @@
 const request = require("supertest")
-const jwt = require("jsonwebtoken")
-const mongoose = require("mongoose")
 const app = require("../app")
 const Member = require("../models/member")
+const { memberOneId, memberOne, setupDatabase } = require("./fixtures/db")
 
-const memberOneId = new mongoose.Types.ObjectId()
-const memberOne = {
-  _id: memberOneId,
-  firstName: "Jane",
-  lastName: "Doe",
-  email: "jane.doe@example.com",
-  password: "test123456789",
-  tokens: [
-    {
-      token: jwt.sign({ _id: memberOneId }, process.env.SECRET_KEY),
-    },
-  ],
-}
-
-beforeEach(async () => {
-  await Member.deleteMany()
-  await new Member(memberOne).save()
-})
+beforeEach(setupDatabase)
 
 test("Should signup a new user", async () => {
   const response = await request(app)
@@ -52,8 +34,6 @@ test("Should signup a new user", async () => {
 })
 
 test("Should login existing user", async () => {
-  console.log("SHOULD LOGIN EXISITNG USER (JANE)")
-  console.log("SALJEM: ", memberOne.email, memberOne.pass)
   const response = await request(app)
     .post("/1/members/login")
     .query({

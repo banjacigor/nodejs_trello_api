@@ -8,7 +8,7 @@ module.exports.create_list = async (req, res) => {
 
   try {
     await list.save()
-    return res.status(200).send(list)
+    return res.status(201).send(list)
   } catch (e) {
     return res.status(500).send()
   }

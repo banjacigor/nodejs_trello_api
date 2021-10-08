@@ -5,7 +5,7 @@ module.exports.create_board = async (req, res) => {
 
   try {
     await board.save()
-    res.status(200).send()
+    return res.status(201).send(board)
   } catch (e) {
     res.status(500).send()
   }
