@@ -38,3 +38,9 @@ Here's an API overview:
 | Delete a comment on a card     | `DELETE` | `/1/cards/{id}/actions/{idAction}/comments` |
 | Delete a member from a card    | `DELETE` | `/1/cards/{id}/idMembers/{idMember}`        |
 | Delete a card and its comments | `DELETE` | `/1/cards/{id}`                             |
+
+\
+\
+Create card example\
+\
+`/1/cards?name=New Name&due=2021-05-08&desc=new description&idList=616314eaf50a9e9c9a3db715&idMembers[]=615d29cc1ff791ce6a6e9e17&idMembers[]=615d29f31ff791ce6a6e9e1b`
