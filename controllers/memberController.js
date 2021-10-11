@@ -56,14 +56,6 @@ module.exports.get_member = async (req, res) => {
 module.exports.update_member = async (req, res) => {
   const _id = req.params.id
   const updates = Object.keys(req.query)
-  const allowedUpdates = ["firstName", "lastName", "email", "password"]
-  const isValidOperation = updates.every((update) =>
-    allowedUpdates.includes(update)
-  )
-
-  if (!isValidOperation) {
-    return res.status(400).send({ error: "Invalid updates." })
-  }
 
   try {
     const member = await Member.findById({ _id })

@@ -33,14 +33,6 @@ module.exports.get_list = async (req, res) => {
 module.exports.update_list = async (req, res) => {
   const _id = req.params.id
   const updates = Object.keys(req.query)
-  const allowedUpdates = ["name", "idBoard"]
-  const isValidOperation = updates.every((update) =>
-    allowedUpdates.includes(update)
-  )
-
-  if (!isValidOperation) {
-    return res.status(400).send({ error: "Invalid updates." })
-  }
 
   try {
     const list = await List.findById(_id)
